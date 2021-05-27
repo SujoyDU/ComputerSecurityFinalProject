@@ -91,7 +91,7 @@ Breakpoint 3, 0x00005555555551e0 in main ()
 0x7fffffffdf68: 0x00007fffffffdfe0      0x00007ffff7ffe180
 (gdb) 
 ```
-Here we see address 0x7fffffffded8. If we use steoi we can contiue to run return where we get sigsegv error,
+Here we see address 0x7fffffffded8. If we use stepi we can contiue to run return where we get sigsegv error,
 the register show as follows:
 ```shell
 (gdb) stepi
